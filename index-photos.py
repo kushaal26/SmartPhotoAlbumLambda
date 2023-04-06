@@ -11,6 +11,7 @@ def get_url(index, type):
     return url
 
 def lambda_handler(event, context):
+    print("hi")
     print("event: ", event)
     jsonBody = event['Records'][0]
     bucketName = jsonBody['s3']['bucket']['name']
