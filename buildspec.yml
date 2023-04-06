@@ -1,16 +1,26 @@
 version: 0.2
+
 phases:
-  install:
-    commands:
-      - echo "Installing dependencies..."
   build:
     commands:
-      - echo "Zipping deployment package..."
-      - zip -g deployment_package1.zip lambda_function.py
-      - zip -g deployment_package2.zip lambda_function.py
+      - echo "Building the Lambda functions..."
+      - pwd
+      - cd index-photos
+      - pwd
+      - ls
+      - zip -r ../index-photos.zip *
+      - cd ../search-photos
+      - pwd
+      - ls
+      - zip -r ../search-photos.zip *
+      - cd ..
+      - ls
+      - pwd
+
   post_build:
     commands:
-      - echo "Updating lambda Function..."
-      - aws lambda update-function-code --function-name index-photos --zip-file fileb://deployment_package1.zip
-      - aws lambda update-function-code --function-name search-photos --zip-file fileb://deployment_package2.zip
-      - echo "DONE!!"
+      - pwd
+      - ls
+      - echo "Updating the Lambda functions..."
+      - aws lambda update-function-code --function-name index-photos --zip-file "fileb://index-photos.zip"
+      - aws lambda update-function-code --function-name search-photos --zip-file "fileb://search-photos.zip"
