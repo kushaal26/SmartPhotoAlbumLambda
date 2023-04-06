@@ -15,6 +15,7 @@ def get_url(es_index, es_type, keyword):
 
 def lambda_handler(event, context):
 	print("hi")
+	print("hi2")
 
 	print("EVENT --- {}".format(json.dumps(event)))
 	
